@@ -1,32 +1,44 @@
-<?php
-
-//dd(getcwd());
-?>
 <?php require "views/partials/header.view.php" ?>
 
-<a href="/admin/products/create" class="btn btn-primary">Add new product</a>
-<br>
-<br>
-<table class="table table-striped">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Thumbnail</th>
-        <th>Actions</th>
-    </tr>
-    <?php foreach ($products as $product): ?>
-    <tr>
-        <td><?= $product->id ?></td>
-        <td><?= $product->title ?></td>
-        <td><?= substr($product->description, 0, 50) ?>...</td>
-        <td><img src="<?= $product->image ?>" alt="" width="150"></td>
-        <td><a href="/admin/products/show?id=<?= $product->id ?>">Show</a> | <form action="/admin/products/edit" method="get"><button class="btn">
-                    <input type="hidden" name="id" value="<?= $product->id ?>">Edit</button></form> | <form class="deleteForm" action="/admin/products/destroy" method="post"><button class="btn">
-                    <input type="hidden" name="id" value="<?= $product->id ?>">Delete</button></form></td>
-    </tr>
-    <?php endforeach; ?>
-</table>
+<?php require "views/partials/adminPanelMain.view.php" ?>
+
+<div class="admin-body" id="main">
+<div class="navBar-left">
+    <h3>T-shirts made by Bershka</h3>
+</div>
+<div class="index-admin">
+    
+<a href="/admin/products/create" class="addNew"> <i class="fas fa-plus-circle"></i> Add new product</a>
+
+<div class="product-table">
+<?php foreach ($products as $product): ?>
+    <div class="singleProduct">
+        <div class="picture"  style="background-image: url(<?= $product->image ?>); background-repeat: no-repeat;width: 100%;height: 100%;">
+        </div>
+        <div class="description">
+           
+            <h4>Title: <span style="color: #4b5868"><?= $product->title ?></span></h4>
+            <h5>ID: <?= $product->id ?>, Description: </h5>
+            <p><?= substr($product->description, 0, 60) ?></p>
+            <div class="buttons">
+            <a class="formButton" href="/admin/products/show?id=<?= $product->id ?>"><i class="fas fa-search-plus"></i></a>
+                <form action="/admin/products/edit" method="get"><button class="formButton">
+                    <input type="hidden" name="id" value="<?= $product->id ?>"><i class="fas fa-edit"></i></button>
+                </form>
+                <form class="deleteForm" action="/admin/products/destroy" method="post">
+                    <button class="formButton">
+                    <i class="fas fa-minus-circle"></i><input type="hidden" name="id" value="<?= $product->id ?>">
+                </form>
+            </div>
+            
+        </div>
+    </div>
+<?php endforeach; ?>
+</div>
+
+</div>
+</div>
+</div>
 <?php require "views/partials/footer.view.php" ?>
 
 <script>

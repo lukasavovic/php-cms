@@ -13,7 +13,7 @@
 </div>
 <div class="index-admin">
 
-<a href="/admin/products"><i class="fas fa-arrow-circle-left"></i></a>
+<a href="/admin/products" class="backHome"><i class="fas fa-arrow-circle-left" id="backHome"></i> Back To All Products</a>
 
 <div class="container-fluid create-wrapper">
     <form action="/admin/products" method="POST" enctype="multipart/form-data">
